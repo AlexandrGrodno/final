@@ -1,6 +1,7 @@
 package org.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.example.Entity.User;
 import org.example.configuraition.MyConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -14,5 +15,10 @@ public class App
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
         Comunication comunication = context.getBean("comunication", Comunication.class);
         System.out.println(comunication.getAllUser());
+        comunication.saveUser(new User(3L,"James","Brown",(byte)10));
+        System.out.println("N "+comunication.getAllUser());
+        comunication.updateUser(new User(3L,"Thomas","Shelby",(byte)10));
+        System.out.println("u " +comunication.getAllUser());
+        comunication.deleteUser(3L);
     }
 }
